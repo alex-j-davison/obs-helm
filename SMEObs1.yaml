@@ -1,6 +1,10 @@
 agent:
   discovery:
     enabled: true
+  config:
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
 clusterName: SMEObs1
 environment: ajdSMEObs1Test
 gateway:
