@@ -8,6 +8,8 @@ echo "# Starting...                                                 #"
 echo "###############################################################"
 echo ""
 
+git branch --set-upstream-to=origin/main backup-main
+
 git fetch --all
 
 git checkout -b backup-main

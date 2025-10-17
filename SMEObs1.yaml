@@ -21,6 +21,3 @@ splunkPlatform:
   logsEnabled: true
   metricsEnabled: false
   insecureSkipVerify: true
-receivers:
-  kubeletstats:
-    insecure_skip_verify: true
