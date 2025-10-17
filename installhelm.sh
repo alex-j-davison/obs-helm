@@ -10,7 +10,7 @@ echo ""
 
 git fetch --all
 
-git branch backup-main
+git checkout -b backup-main
 
 git reset --hard origin/main
 
