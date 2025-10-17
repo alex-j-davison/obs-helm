@@ -50,8 +50,8 @@ do
     if [ -e SMEObs1.yaml ]
     then
         echo "Step 3/4: Check if SMEObs1.yaml has changed" 
-        echo "Current time: $currenttime"
-        echo "Past time: $pasttime"
+        echo "C: $currenttime"
+        echo "P: $pasttime"
         if [ currenttime!=pasttime ]
         then
             echo "Step 4/4: Upgrade helm"
