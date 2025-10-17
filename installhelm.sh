@@ -52,13 +52,14 @@ do
         echo "Step 3/4: Check if SMEObs1.yaml has changed" 
         echo "C: $currenttime"
         echo "P: $pasttime"
-        if [ "$currenttime"!="$pasttime" ]
+        if [ "$currenttime"="$pasttime" ]
         then
+            echo "Step 4/4: Upgrade not possible, no change"
+        else
             echo "Step 4/4: Upgrade helm"
             sudo microk8s helm upgrade splunk-otel-collector --values SMEObs1.yaml splunk-otel-collector-chart/splunk-otel-collector
             pasttime=$currenttime
-        else
-            echo "Step 4/4: Upgrade not possible, no change"
+            
         fi
     else
         echo "Step 3/4: Upgrade not possible, no yaml"
