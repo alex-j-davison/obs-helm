@@ -1,5 +1,5 @@
 echo "###############################################################"
-echo "# Script: Step-1 Setup observability instance                 #"
+echo "# Script: Pull the latest helm and upgrade the helm           #"
 echo "# Description: To create a observability instance.            #"
 echo "# Created date: 17/10/25                                      #"
 echo "# Arthur: Alex J Davison (alexdav@cisco.com)                  #"
@@ -11,15 +11,15 @@ echo "##############################"
 echo "# Update according to Github #"
 echo "##############################"
 echo ""
-echo "Step 1/5:"
+echo "Step 1/5: Set branch 'backup-main' set up to track remote branch 'main' from 'origin'"
 git branch --set-upstream-to=origin/main backup-main
-echo "Step 2/5:"
+echo "Step 2/5: Update all origin/<branch> refs to latest:"
 git fetch --all
-echo "Step 3/5:"
+echo "Step 3/5: Backup your current branch"
 git checkout -b backup-main
-echo "Step 4/5:"
+echo "Step 4/5: Jump to the latest commit on origin/main and checkout those files"
 git reset --hard origin/main
-echo "Step 5/5:"
+echo "Step 5/5: Pull latest"
 git pull
 echo ""
 echo "###########################"
