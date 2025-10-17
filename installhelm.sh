@@ -64,5 +64,11 @@ do
         echo "Step 3/4: Upgrade not possible, no yaml"
     fi
     echo ""
+    total_seconds=15
+    while [ $total_seconds -gt 0 ]; do
+        printf "Time remaining: %d seconds\r" "$total_seconds"
+        sleep 1
+        total_seconds=$((total_seconds - 1))
+    done
 done
 
