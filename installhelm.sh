@@ -19,7 +19,7 @@ git pull
 if [ -e SMEObs1.yaml ]
 then
     echo "Updating helm"
-    helm upgrade splunk-otel-collector --values SMEObs1.yaml splunk-otel-collector-chart/splunk-otel-collector
+    sudo microk8s helm upgrade splunk-otel-collector --values SMEObs1.yaml splunk-otel-collector-chart/splunk-otel-collector
 else
     echo "No values.yaml"
 fi
