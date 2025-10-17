@@ -44,13 +44,14 @@ do
     echo ""
     
     echo "Step 1/4: Get file details" 
-    currenttime=`ls -ltr | grep SMEObs1.yaml >> lastupdated.txt`
-    echo "Current time: $currenttime"
+    currenttime=`ls -ltr | grep SMEObs1.yaml`
     
     echo "Step 2/4: Check if SMEObs1.yaml exists" 
     if [ -e SMEObs1.yaml ]
     then
         echo "Step 3/4: Check if SMEObs1.yaml has changed" 
+        echo "Current time: $currenttime"
+        echo "Past time: $pasttime"
         if [ currenttime!=pasttime ]
         then
             echo "Step 4/4: Upgrade helm"
