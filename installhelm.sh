@@ -52,7 +52,7 @@ do
         echo "Step 3/4: Check if SMEObs1.yaml has changed" 
         echo "C: $currenttime"
         echo "P: $pasttime"
-        if [ $currenttime=$pasttime ]
+        if [ "$currenttime" = "$pasttime" ];
         then
             echo "Step 4/4: Upgrade not possible, no change"
         else
