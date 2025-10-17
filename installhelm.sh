@@ -35,9 +35,10 @@ echo "###############"
 echo ""
 if [ -e SMEObs1.yaml ]
 then
-    echo "Updating helm"
+    echo "Step 1/1: Upgrade helm"
     sudo microk8s helm upgrade splunk-otel-collector --values SMEObs1.yaml splunk-otel-collector-chart/splunk-otel-collector
 else
+    echo "Step 0/0: Upgrade not possible"
     echo "No values.yaml"
 fi
 
