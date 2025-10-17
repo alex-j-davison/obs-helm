@@ -12,7 +12,7 @@ echo "# Starting loop #"
 echo "#################"
 echo ""
 
-pasttime=""
+pasttime=`ls -ltr | grep SMEObs1.yaml`
 
 while true
 do
