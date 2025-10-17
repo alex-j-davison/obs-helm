@@ -24,7 +24,7 @@ splunkPlatform:
   token: 9609730b-994a-41a8-b72f-3b5d8d42e5c0 
   index: "main"
   metricsIndex: "maintmetircs"
-  metricsEnabled: true
-  tracesEnabled: true
+  metricsEnabled: false
+  tracesEnabled: false
   logsEnabled: true
   insecureSkipVerify: true
