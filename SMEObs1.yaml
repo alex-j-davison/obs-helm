@@ -25,6 +25,6 @@ splunkPlatform:
   index: "main"
   metricsIndex: "maintmetircs"
   metricsEnabled: false
-  tracesEnabled: true
+  tracesEnabled: false
   logsEnabled: true
   insecureSkipVerify: true
