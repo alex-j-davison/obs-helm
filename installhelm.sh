@@ -8,6 +8,12 @@ echo "# Starting...                                                 #"
 echo "###############################################################"
 echo ""
 
+git fetch --all
+
+git branch backup-main
+
+git reset --hard origin/main
+
 git pull
 
 if [ -e SMEObs1.yaml ]
