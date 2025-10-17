@@ -43,20 +43,25 @@ do
     echo "###############"
     echo ""
     
+    echo "Step 1/4: Get file details" 
     currenttime=`ls -ltr | grep SMEObs1.yaml >> lastupdated.txt`
-    echo "$currenttime"
-
+    echo "Current time: $currenttime"
+    
+    echo "Step 2/4: Check if SMEObs1.yaml exists" 
     if [ -e SMEObs1.yaml ]
     then
+        echo "Step 3/4: Check if SMEObs1.yaml has changed" 
         if [ currenttime!=pasttime ]
         then
-            echo "Step 1/1: Upgrade helm"
+            echo "Step 4/4: Upgrade helm"
             sudo microk8s helm upgrade splunk-otel-collector --values SMEObs1.yaml splunk-otel-collector-chart/splunk-otel-collector
             pasttime=$currenttime
+        else
+            echo "Step 4/4: Upgrade not possible, no change"
         fi
     else
-        echo "Step 0/0: Upgrade not possible"
-        echo "No values.yaml"
+        echo "Step 3/4: Upgrade not possible, no yaml"
     fi
+    echo ""
 done
 
