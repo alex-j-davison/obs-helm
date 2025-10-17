@@ -17,11 +17,14 @@ splunkObservability:
   accessToken: UkWiTCjeB_S0whQbIzNh2g
   profilingEnabled: true
   realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
 splunkPlatform:
   endpoint: http://10.236.6.77:8088/services/collector/event
   token: 9609730b-994a-41a8-b72f-3b5d8d42e5c0 
   index: "main"
   metricsIndex: "maintmetircs"
-  logsEnabled: true
   metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
   insecureSkipVerify: true
