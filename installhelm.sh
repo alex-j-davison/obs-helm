@@ -13,13 +13,14 @@ echo "# Initialization #"
 echo "##################"
 echo ""
 echo "YAML: " $1
+file=$1
 echo ""
 echo "#################"
 echo "# Starting loop #"
 echo "#################"
 echo ""
 
-pasttime=`ls -ltr | grep $1.yaml
+pasttime=`ls -ltr | grep ${file}.yaml
 
 while true
 do
