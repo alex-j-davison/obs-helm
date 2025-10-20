@@ -23,6 +23,10 @@ Script does the following:-
 * README.md - This file (https://www.markdownguide.org/basic-syntax/)
 * SMEObs1.yaml
 
+## Arguments
+
+* "$1" - yaml to be deployed
+
 ## Installation steps
 
 Steps:-
@@ -41,7 +45,11 @@ Steps:-
 
 4. Run setup
 
-<code> ./installhelm.sh </code>
+<code> ./installhelm.sh <HELM_CHART_NAME_HERE> </code>
+
+Example below:- 
+
+<code> ./installhelm.sh SMEObs1.yaml </code>
 
 ## Change log
 

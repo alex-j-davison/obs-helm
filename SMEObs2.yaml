@@ -1,0 +1,30 @@
+agent:
+  discovery:
+    enabled: true
+  config:
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
+clusterName: SMEObs2
+environment: ajdSMEObs2Test
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+splunkObservability:
+  accessToken: UkWiTCjeB_S0whQbIzNh2g
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+splunkPlatform:
+  endpoint: http://10.236.6.77:8088/services/collector/event
+  token: 9609730b-994a-41a8-b72f-3b5d8d42e5c0 
+  index: "main"
+  metricsIndex: "maintmetircs"
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true
