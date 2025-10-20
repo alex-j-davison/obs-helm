@@ -20,7 +20,7 @@ echo "# Starting loop #"
 echo "#################"
 echo ""
 
-pasttime=`ls -ltr | grep SMEObs1.yaml`
+pasttime="`ls -ltr | grep ${file}.yaml`"
 
 while true
 do
