@@ -12,15 +12,15 @@ echo "##################"
 echo "# Initialization #"
 echo "##################"
 echo ""
-echo "YAML:"$1
 file=$1
+echo "YAML:" ${file}
 echo ""
 echo "#################"
 echo "# Starting loop #"
 echo "#################"
 echo ""
 
-pasttime="ls -ltr | grep ${file}.yaml"
+pasttime=`ls -ltr | grep SMEObs1.yaml`
 
 while true
 do
@@ -52,7 +52,7 @@ do
     echo ""
     
     echo "Step 1/4: Get file details" 
-    currenttime='ls -ltr | grep ${file}.yaml'
+    currenttime=`ls -ltr | grep SMEObs1.yaml`
     
     echo "Step 2/4: Check if ${file}.yaml exists" 
     if [ -e ${file}.yaml ]
