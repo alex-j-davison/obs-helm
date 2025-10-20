@@ -12,7 +12,7 @@ echo "# Starting loop #"
 echo "#################"
 echo ""
 
-pasttime=`ls -ltr | grep $1'.yaml'
+pasttime=`ls -ltr | grep $1.yaml
 
 while true
 do
@@ -44,12 +44,12 @@ do
     echo ""
     
     echo "Step 1/4: Get file details" 
-    currenttime=`ls -ltr | grep $1'.yaml'
+    currenttime=`ls -ltr | grep $1.yaml
     
-    echo "Step 2/4: Check if '$1'.yaml exists" 
-    if [ -e $1'.yaml' ]
+    echo "Step 2/4: Check if $1.yaml exists" 
+    if [ -e $1.yaml ]
     then
-        echo "Step 3/4: Check if '$1'.yaml has changed" 
+        echo "Step 3/4: Check if $1.yaml has changed" 
         echo "C: $currenttime"
         echo "P: $pasttime"
         if [ "$currenttime" = "$pasttime" ];
@@ -57,7 +57,7 @@ do
             echo "Step 4/4: Upgrade not possible, no change"
         else
             echo "Step 4/4: Upgrade helm"
-            sudo microk8s helm upgrade splunk-otel-collector --values '$1'.yaml splunk-otel-collector-chart/splunk-otel-collector
+            sudo microk8s helm upgrade splunk-otel-collector --values $1.yaml splunk-otel-collector-chart/splunk-otel-collector
             pasttime=$currenttime
             
         fi
@@ -72,4 +72,3 @@ do
         total_seconds=$((total_seconds - 1))
     done
 done
-
