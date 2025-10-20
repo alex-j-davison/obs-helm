@@ -14,7 +14,7 @@ echo "##################"
 echo ""
 if [ $# -eq 0 ]
     then
-        echo "Error: No arguments supplied"
+        echo "Error: No arguments supplied. Need yaml file needed."
         set -e
     else
         file=$1
