@@ -7,6 +7,13 @@ echo "# Version: 1.0.0                                              #"
 echo "# Starting...                                                 #"
 echo "###############################################################"
 echo ""
+
+echo "##################"
+echo "# Initialization #"
+echo "##################"
+echo ""
+echo "YAML: " $1
+echo ""
 echo "#################"
 echo "# Starting loop #"
 echo "#################"
