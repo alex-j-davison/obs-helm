@@ -52,7 +52,7 @@ do
     echo ""
     
     echo "Step 1/4: Get file details" 
-    currenttime=`ls -ltr | grep SMEObs1.yaml`
+    currenttime=`ls -ltr | grep "${file}.yaml"`
     
     echo "Step 2/4: Check if ${file}.yaml exists" 
     if [ -e ${file}.yaml ]
