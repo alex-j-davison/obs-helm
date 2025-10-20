@@ -12,6 +12,11 @@ echo "##################"
 echo "# Initialization #"
 echo "##################"
 echo ""
+if [ $# -eq 0 ]
+  then
+    echo "Error: No arguments supplied"
+    set -e
+fi
 file=$1
 echo "YAML:" ${file}
 echo ""
