@@ -24,9 +24,12 @@ if [ $# -eq 0 ]
         echo "# Starting loop #"
         echo "#################"
         echo ""
-
+        echo "Step 1/2: Setting past time"
         pasttime=`ls -ltr | grep "${file}.yaml"`
-
+        echo "Step 2/2: Setting kubectl namespace"
+        kubectl config set-context --current --namespace=default
+        echo ""
+        
         while true
         do
             echo "##############################"
