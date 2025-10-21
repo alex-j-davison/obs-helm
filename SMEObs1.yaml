@@ -20,10 +20,10 @@ splunkObservability:
   metricsEnabled: true
   tracesEnabled: true
 splunkPlatform:
-  endpoint: http://10.236.6.77:8088/services/collector/event
+  endpoint: https:///http-inputs.splunkods.splunkcloud.com:443/services/collector/event
   token: 9609730b-994a-41a8-b72f-3b5d8d42e5c0 
-  index: "main"
-  metricsIndex: "maintmetircs"
+  index: "ajdmainevents"
+  metricsIndex: "ajdmaintmetircs"
   metricsEnabled: false
   tracesEnabled: false
   logsEnabled: true
