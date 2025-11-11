@@ -78,6 +78,8 @@ if [ $# -eq 0 ]
                     
                 fi
             else
+                pwd
+                echo ${file}.yaml
                 echo "Step 3/4: Upgrade not possible, no yaml"
             fi
             echo ""
