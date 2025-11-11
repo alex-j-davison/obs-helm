@@ -76,7 +76,7 @@ processors:
       expvar:
         enabled: true
 
-service:
+  service:
     extensions: [pprof, zpages, health_check]
     pipelines:
       logs/one:
