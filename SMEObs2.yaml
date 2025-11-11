@@ -3,6 +3,8 @@ agent:
     enabled: true
   config:
     receivers:
+      filelog/temp:
+        include: [ /tmp/test.log ]
       kubeletstats:
         insecure_skip_verify: true
 clusterName: SMEObs2
@@ -19,6 +21,7 @@ splunkObservability:
   realm: us1
   metricsEnabled: true
   tracesEnabled: true
+  logsEnabled: false
 splunkPlatform:
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
   token: a319f672-1b42-4201-a443-54b35ae6f1d8
