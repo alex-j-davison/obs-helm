@@ -41,18 +41,7 @@ agent:
           # For this demo, we use a self-signed certificate on the Splunk docker instance, so this flag is set to true.
           insecure_skip_verify: true
 
-    extensions:
-      health_check:
-        endpoint: 0.0.0.0:13133
-      pprof:
-        endpoint: :1888
-      zpages:
-        endpoint: :55679
-        expvar:
-          enabled: true
-
     service:
-      extensions: [pprof, zpages, health_check]
       pipelines:
         logs/one:
           receivers: [ filelog/onefile ]
