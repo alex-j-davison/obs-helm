@@ -56,6 +56,10 @@ operator:
   enabled: true
 operatorcrds:
   install: true
+
+# It is possible to split out metric and traces to different tokens. However, this cannot be achieved with splunkPlatform
+
+# This is a single endpoint configuration 
 splunkObservability:
   #This will need changing so that usage can be managed and cross charging can take place
   accessToken: <access-token>
@@ -66,10 +70,6 @@ splunkObservability:
   metricsEnabled: true
   tracesEnabled: true
 
-
-# It is possible to split out metric and traces to different tokens. However, this cannot be achieved with splunkPlatform
-
-# This is a single endpoint configuration 
 splunkPlatform:
   # This will need changing so that usage can be managed and cross charging can take place
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
@@ -88,3 +88,5 @@ splunkPlatform:
   #This may need changing, depending on if a secure connection is set. DHL to clarify.
   insecureSkipVerify: true
 
+exporters:
+  otlphttp:
