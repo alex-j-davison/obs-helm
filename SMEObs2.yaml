@@ -1,78 +1,7 @@
-agent:
-  discovery:
-    enabled: true
-  config:
-    processors:
-      batch:
-      resource/one:
-        attributes:
-        # Set the com.splunk.sourcetype log attribute key to sourcetype1.
-        # com.splunk.sourcetype is the default key the HEC exporter will use to extract the source type of the record.
-        # See https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/splunkhecexporter
-        # under the configuration key `hec_metadata_to_otel_attrs/sourcetype`
-        - key: com.splunk.sourcetype
-          value: "sourcetype1"
-          action: upsert
-
-    receivers:
-      kubeletstats:
-        insecure_skip_verify: true
-      filelog/onefile:
-        include: [ /tmp/test.log ]
-
-    exporters:
-      splunk_hec/logs:
-        # Splunk HTTP Event Collector token.
-        token: "a319f672-1b42-4201-a443-54b35ae6f1d8"
-        # URL to a Splunk instance to send data to.
-        endpoint: "https://http-inputs.splunkods.splunkcloud.com:443/services/collector"
-        # Optional Splunk source: https://docs.splunk.com/Splexicon:Source
-        source: "output"
-        # Splunk index, optional name of the Splunk index targeted.
-        index: "ajdmainevents"
-        # Maximum HTTP connections to use simultaneously when sending data. Defaults to 100.
-        max_connections: 20
-        # Whether to disable gzip compression over HTTP. Defaults to false.
-        disable_compression: false
-        # HTTP timeout when sending data. Defaults to 10s.
-        timeout: 10s
-        tls:
-          # Whether to skip checking the certificate of the HEC endpoint when sending data over HTTPS. Defaults to false.
-          # For this demo, we use a self-signed certificate on the Splunk docker instance, so this flag is set to true.
-          insecure_skip_verify: true
-
-    extensions:
-      health_check:
-        endpoint: 0.0.0.0:13133
-      pprof:
-        endpoint: :1888
-      zpages:
-        endpoint: :55679
-        expvar:
-          enabled: true
-
-    service:
-      extensions: [pprof, zpages, health_check]
-      pipelines:
-        logs/one:
-          receivers: [ filelog/onefile ]
-          processors: [ batch, resource/one ]
-          exporters: [ splunk_hec/logs ]
-
 clusterName: SMEObs2
 environment: ajdSMEObs2Test
-gateway:
-  enabled: false
-operator:
-  enabled: true
-operatorcrds:
-  install: true
-splunkObservability:
-  accessToken: UkWiTCjeB_S0whQbIzNh2g
-  profilingEnabled: true
-  realm: us1
-  metricsEnabled: true
-  tracesEnabled: true
+
+
 splunkPlatform:
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
   token: a319f672-1b42-4201-a443-54b35ae6f1d8
@@ -82,3 +11,45 @@ splunkPlatform:
   tracesEnabled: false
   logsEnabled: true
   insecureSkipVerify: true
+
+splunkObservability:
+  accessToken: UkWiTCjeB_S0whQbIzNh2g
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+
+logsEngine: otel
+autodetect:
+  prometheus: true
+
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+
+agent:
+  enabled: true
+  discovery:
+    enabled: true
+  config:
+    receivers:
+      prometheus/customport:
+      port: 9091
+    pipeline:
+  metris:
+    metrics/newprometheus:
+    receivers:
+    - otlp
+    - signalx
+    - prometheus/custmport
+    proessors:
+clusterReceiver:
+ enabled: true
+logsCollection:
+ containers:
+   enabled: true
+featureGates:
+ useLightPrometheusReceiver: true
