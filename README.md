@@ -49,7 +49,7 @@ Steps:-
 
 Example below:- 
 
-<code> ./installhelm.sh SMEObs1.yaml </code>
+<code> ./installhelm.sh SMEObs1 </code>
 
 ## Change log
 
