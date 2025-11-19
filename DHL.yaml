@@ -142,9 +142,9 @@ agent:
 
       splunk_hec/logs:
         # Splunk HTTP Event Collector token.
-        token: <hec_access_token>
+        token: a319f672-1b42-4201-a443-54b35ae6f1d8
         # URL to a Splunk instance to send data to.
-        endpoint: <log_token>
+        endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
         # Whether to deactivate gzip compression over HTTP. Defaults to false.
         disable_compression: false
         # HTTP timeout when sending data. Defaults to 10s.
@@ -173,9 +173,9 @@ agent:
         insecure_skip_verify: true
 
 #This will need changing per cluster name
-clusterName: <cluster-name>
+clusterName: ajd-dhl-test
 #This will need changing per cluster type
-environment: <environment>
+environment: test
 gateway:
   enabled: false
 operator:
