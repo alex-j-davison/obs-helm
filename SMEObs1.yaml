@@ -13,6 +13,7 @@ operator:
   enabled: true
 operatorcrds:
   install: true
+  
 splunkObservability:
   accessToken: UkWiTCjeB_S0whQbIzNh2g
   profilingEnabled: true

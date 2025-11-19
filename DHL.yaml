@@ -183,34 +183,19 @@ operator:
 operatorcrds:
   install: true
 
-# It is possible to split out metric and traces to different tokens. However, this cannot be achieved with splunkPlatform
-
-# This is a single endpoint configuration 
-#splunkObservability:
-  #This will need changing so that usage can be managed and cross charging can take place
-  #accessToken: <access-token>
-  #profilingEnabled: true
-  # Required, were cloud is based
-  #realm: eu0
-  # Required, were cloud is based 
-  #metricsEnabled: true
-  #tracesEnabled: true
-
-#splunkPlatform:
-  # This will need changing so that usage can be managed and cross charging can take place
-  #endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
-  # This might need to change 
-  #token: "<token>"
-  # (Optional) Can be set on-prem. Recommended though
-  #index: "<index>"
-  # (Optional) Not required as metics do to cloud however, enabled currently
-  #metricsIndex: "<metrics-index>"
-  # (Optional) Not required as metics do to cloud however, enabled currently
-  #metricsEnabled: false
-  # Not required as traces go to cloud
-  #tracesEnabled: false
-  # Required for logs to go on-prem
-  #logsEnabled: true
-  #This may need changing, depending on if a secure connection is set. DHL to clarify.
-  #insecureSkipVerify: true
-
+splunkObservability:
+  accessToken: UkWiTCjeB_S0whQbIzNh2g
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+  
+splunkPlatform:
+  endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+  token: a319f672-1b42-4201-a443-54b35ae6f1d8
+  index: "ajdmainevents"
+  metricsIndex: "ajdmaintmetircs"
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true
