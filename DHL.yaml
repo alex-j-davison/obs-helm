@@ -1,1 +1,90 @@
+##########################################
+##########################################
+## Installing the Splunk Otel collector ##
+##########################################
+##########################################
+
+##############################
+# Option one: Use the Wizard # 
+##############################
+# 1. Data Management
+# 2. Overview
+# 3. Kubernetes
+# 4. Follow wizard
+
+###############################################################
+# Option two: Commands (Note these can be found from wizard.) #
+###############################################################
+
+# helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+# helm repo update
+# helm install splunk-otel-collector --set="distribution=openshift,splunkObservability.accessToken=<token>,clusterName=<cluster-name>,splunkObservability.realm=eu1,gateway.enabled=false,splunkObservability.profilingEnabled=true,environment=<environment>,operatorcrds.install=true,operator.enabled=true,agent.discovery.enabled=true" splunk-otel-collector-chart/splunk-otel-collector
+# .NET
+# For linux-x64:
+# kubectl patch deployment <my-deployment> -n <my-namespace> -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-dotnet":"default/splunk-otel-collector","instrumentation.opentelemetry.io/otel-dotnet-auto-runtime":"linux-x64"}}}}}'
+# .NET
+# For linux-musl-x64:
+# kubectl patch deployment <my-deployment> -n <my-namespace> -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-dotnet":"default/splunk-otel-collector","instrumentation.opentelemetry.io/otel-dotnet-auto-runtime":"linux-musl-x64"}}}}}'
+# Java
+# kubectl patch deployment <my-deployment> -n <my-namespace> -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"default/splunk-otel-collector"}}}}}'
+# Node.js
+# kubectl patch deployment <my-deployment> -n <my-namespace> -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"default/splunk-otel-collector"}}}}}'
+# Python
+# kubectl patch deployment <my-deployment> -n <my-namespace> -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-python":"default/splunk-otel-collector"}}}}}'
+
+################
+# Yaml Example #
+################
+
+# Below is the YAML file that can be used for metrics and logs for all Openshift environments. Note: Certain properties need to adjusted need to be adjusted 
+
+agent:
+  discovery:
+    enabled: true
+  config:
+    receivers:
+      kubeletstats:
+        #This may need changing, depending on if a secure connection is set. DHL to clarify.
+        insecure_skip_verify: true
+#This will need changing per cluster name
+clusterName: <cluster-name>
+#This will need changing per cluster type
+environment: <environment>
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+splunkObservability:
+  #This will need changing so that usage can be managed and cross charging can take place
+  accessToken: <access-token>
+  profilingEnabled: true
+  # Required, were cloud is based
+  realm: eu0
+  # Required, were cloud is based 
+  metricsEnabled: true
+  tracesEnabled: true
+
+
+# It is possible to split out metric and traces to different tokens. However, this cannot be achieved with splunkPlatform
+
+# This is a single endpoint configuration 
+splunkPlatform:
+  # This will need changing so that usage can be managed and cross charging can take place
+  endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+  # This might need to change 
+  token: "<token>"
+  # (Optional) Can be set on-prem. Recommended though
+  index: "<index>"
+  # (Optional) Not required as metics do to cloud however, enabled currently
+  metricsIndex: "<metrics-index>"
+  # (Optional) Not required as metics do to cloud however, enabled currently
+  metricsEnabled: false
+  # Not required as traces go to cloud
+  tracesEnabled: false
+  # Required for logs to go on-prem
+  logsEnabled: true
+  #This may need changing, depending on if a secure connection is set. DHL to clarify.
+  insecureSkipVerify: true
 
