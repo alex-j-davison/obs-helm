@@ -1,0 +1,151 @@
+agent:
+  
+  discovery:
+    enabled: true
+  
+  config:
+
+    processors:
+      ########################################
+      # Annotation for Splunk On-Prem tokens #
+      ########################################
+      # 19.11. (Alex D) - Annotation to set log tokens for on-prem
+      k8sattributes/logs:
+        extract:
+          annotations:
+            - from: namespace
+              key: tokens/splunklogstoken
+              tag_name: com.splunk.signalfx.logstoken
+      #####################################
+      # Annotation for Splunk O11y tokens #
+      #####################################
+      # 19.11. (Alex D) - Annotation to metrics and trace tokens for O11y cloud 
+      k8sattributes/traces:
+        extract:
+          annotations:
+            - from: namespace
+              key: tokens/o11ytracestoken
+              tag_name: com.splunk.signalfx.tracestoken
+      k8sattributes/metrics:
+        extract:
+          annotations:
+            - from: namespace
+              key: tokens/o11ymetrictoken
+              tag_name: com.splunk.signalfx.metrictoken
+
+    exporters:
+      
+      ###############
+      # Splunk O11y #
+      ###############
+      # 19.11. (Alex D) - O11y endpoint defined
+      otlphttp/traces:
+        # The target URL to send trace data to. By default it's set to ``https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp``.
+        traces_endpoint: https://ingest.us1.signalfx.com/v2/trace/otlp
+        # Set of HTTP headers added to every request.
+        headers:
+          # X-SF-Token is the authentication token provided by Splunk Observability Cloud.
+          X-SF-Token: <traces_access_token>
+        timeout: 10s
+        read_buffer_size: 123
+        write_buffer_size: 345
+        sending_queue:
+          enabled: true
+          num_consumers: 2
+          queue_size: 10
+        retry_on_failure:
+          enabled: true
+          initial_interval: 10s
+          randomization_factor: 0.7
+          multiplier: 1.3
+          max_interval: 60s
+          max_elapsed_time: 10m
+        compression: gzip
+
+      otlphttp/metrics:
+        # The target URL to send metrics data to. By default it's set to 
+        metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+        # Set of HTTP headers added to every request.
+        headers:
+          # X-SF-Token is the authentication token provided by Splunk Observability Cloud.
+          X-SF-Token: <metrics_access_token>
+        timeout: 10s
+        read_buffer_size: 123
+        write_buffer_size: 345
+        sending_queue:
+          enabled: true
+          num_consumers: 2
+          queue_size: 10
+        retry_on_failure:
+          enabled: true
+          initial_interval: 10s
+          randomization_factor: 0.7
+          multiplier: 1.3
+          max_interval: 60s
+          max_elapsed_time: 10m
+        compression: gzip
+
+      ##################
+      # Splunk On-Prem #
+      ##################
+      # 19.11. (Alex D) - 
+
+      splunk_hec/logs:
+        # Splunk HTTP Event Collector token.
+        token: a319f672-1b42-4201-a443-54b35ae6f1d8
+        # URL to a Splunk instance to send data to.
+        endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+        # Whether to deactivate gzip compression over HTTP. Defaults to false.
+        disable_compression: false
+        # HTTP timeout when sending data. Defaults to 10s.
+        timeout: 10s
+        # Whether to skip checking the certificate of the HEC endpoint when sending data over HTTPS. Defaults to false.
+        tls:
+          insecure_skip_verify: true
+
+    ###################
+    # Splunk Services #
+    ###################
+    # 19.11. (Alex D) - 
+    
+    service:
+      pipelines:
+        metrics:
+          exporters: [otlphttp/traces]
+        traces:
+          exporters: [otlphttp/metrics]
+        logs:
+          exporters: [splunk_hec/logs]
+
+    receivers:
+      kubeletstats:
+        #This may need changing, depending on if a secure connection is set. DHL to clarify.
+        insecure_skip_verify: true
+
+#This will need changing per cluster name
+clusterName: ajd-dhl-test
+#This will need changing per cluster type
+environment: test
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+
+splunkObservability:
+  accessToken: UkWiTCjeB_S0whQbIzNh2g
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+  
+splunkPlatform:
+  endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+  token: a319f672-1b42-4201-a443-54b35ae6f1d8
+  index: "ajdmainevents"
+  metricsIndex: "ajdmaintmetircs"
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true
