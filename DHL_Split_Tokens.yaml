@@ -91,14 +91,16 @@ agent:
         endpoint: :55679
         expvar:
           enabled: true
-          
+      file_storage:
+        directory: /checkpoint/
+
     ###################
     # Splunk Services #
     ###################
     # 19.11. (Alex D) - 
     
     service:
-      extensions: [pprof, zpages, health_check]
+      extensions: [pprof, zpages, health_check, file_storage]
       pipelines:
         metrics:
           exporters: [otlphttp/traces]
