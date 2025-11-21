@@ -80,7 +80,7 @@ agent:
 
     extensions:
       health_check:
-        endpoint: "${SPLUNK_LISTEN_INTERFACE}:13133"
+        endpoint: "${SPLUNK_LISTEN_INTERFACE}:12345"
       pprof:
         endpoint: :1888
       zpages:
