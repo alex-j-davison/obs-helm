@@ -14,6 +14,8 @@ agent:
       otlphttp/traces:
         # The target URL to send trace data to. By default it's set to ``https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp``.
         traces_endpoint: https://ingest.us1.signalfx.com/v2/trace/otlp
+        # The target URL to send metrics data to. By default it's set to 
+        metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
         # Set of HTTP headers added to every request.
         headers:
           # X-SF-Token is the authentication token provided by Splunk Observability Cloud.
@@ -35,6 +37,8 @@ agent:
         compression: gzip
 
       otlphttp/metrics:
+        # The target URL to send trace data to. By default it's set to ``https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp``.
+        traces_endpoint: https://ingest.us1.signalfx.com/v2/trace/otlp
         # The target URL to send metrics data to. By default it's set to 
         metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
         # Set of HTTP headers added to every request.
