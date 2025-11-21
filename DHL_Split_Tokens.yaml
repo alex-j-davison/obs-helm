@@ -91,6 +91,17 @@ agent:
         endpoint: :55679
         expvar:
           enabled: true
+      file_storage:
+        file_storage/all_settings:
+          directory: /var/lib/otelcol/mydir
+          timeout: 1s
+          recreate: true
+          compaction:
+            on_start: true
+            directory: /tmp/
+            max_transaction_size: 65_536
+          fsync: false
+
 
     ###################
     # Splunk Services #
@@ -98,7 +109,7 @@ agent:
     # 19.11. (Alex D) - 
     
     service:
-      extensions: [pprof, zpages, health_check]
+      extensions: [pprof, zpages, health_check, file_storage, file_storage/all_settings]
       pipelines:
         metrics:
           exporters: [otlphttp/traces]
