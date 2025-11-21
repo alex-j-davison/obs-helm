@@ -93,6 +93,7 @@ agent:
           enabled: true
       file_storage:
         directory: /checkpoint/
+        create_directory: true
 
     ###################
     # Splunk Services #
