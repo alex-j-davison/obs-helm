@@ -61,6 +61,11 @@ agent:
           max_elapsed_time: 10m
         compression: gzip
 
+      otlphttp/entities:
+        logs_endpoint: https://ingest.us1.signalfx.com/v3/event
+        headers:
+          "X-SF-Token": c34stMg25wOl4XEgQZSURw
+
       ##################
       # Splunk On-Prem #
       ##################
