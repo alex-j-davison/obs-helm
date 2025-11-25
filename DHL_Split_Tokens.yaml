@@ -99,7 +99,11 @@ agent:
       file_storage:
         directory: /checkpoint/
         create_directory: true
-
+      headers_setter:
+        headers:
+          - action: upsert
+            key: X-SF-TOKEN
+            from_context: X-SF-TOKEN
     ###################
     # Splunk Services #
     ###################
