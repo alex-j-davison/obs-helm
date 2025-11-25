@@ -65,6 +65,8 @@ agent:
         logs_endpoint: https://ingest.us1.signalfx.com/v3/event
         headers:
           "X-SF-Token": c34stMg25wOl4XEgQZSURw
+        auth:
+          authenticator: headers_setter
 
       ##################
       # Splunk On-Prem #
@@ -104,13 +106,15 @@ agent:
           - action: upsert
             key: X-SF-TOKEN
             from_context: X-SF-TOKEN
+            default_value: "${SPLUNK_ACCESS_TOKEN}"
+    
     ###################
     # Splunk Services #
     ###################
     # 19.11. (Alex D) - 
     
     service:
-      extensions: [pprof, zpages, health_check, file_storage]
+      extensions: [pprof, zpages, health_check, file_storage, headers_setter]
       pipelines:
         metrics:
           exporters: [otlphttp/traces]
