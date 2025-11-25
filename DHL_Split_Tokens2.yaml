@@ -98,3 +98,18 @@ operator:
   enabled: true
 operatorcrds:
   install: true
+
+splunkObservability:
+  accessToken: PF4RYA5HhQRH95PQbaCeEA
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+  
+splunkPlatform:
+  endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+  token: 6b73c679-8fcf-4bb8-939b-7456b7ccaca2
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true
