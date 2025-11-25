@@ -7,9 +7,6 @@ agent:
 
     exporters:
       
-      ###############
-      # Splunk O11y #
-      ###############
       # 19.11. (Alex D) - O11y endpoint defined
       otlphttp/traces:
         # The target URL to send trace data to. By default it's set to ``https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp``.
@@ -68,11 +65,7 @@ agent:
         auth:
           authenticator: headers_setter
 
-      ##################
-      # Splunk On-Prem #
-      ##################
       # 19.11. (Alex D) - 
-
       splunk_hec/logs:
         # Splunk HTTP Event Collector token.
         token: 407c0dc9-8883-4c87-9e4b-69e7d5b0e399
@@ -91,7 +84,7 @@ agent:
 
     extensions:
       health_check:
-        endpoint: "${SPLUNK_LISTEN_INTERFACE}:13133"
+        endpoint: 0.0.0.0:13133
       pprof:
         endpoint: :1888
       zpages:
@@ -107,11 +100,6 @@ agent:
             key: X-SF-TOKEN
             from_context: X-SF-TOKEN
             default_value: "${SPLUNK_ACCESS_TOKEN}"
-    
-    ###################
-    # Splunk Services #
-    ###################
-    # 19.11. (Alex D) - 
     
     service:
       extensions: [pprof, zpages, health_check, file_storage, headers_setter]
