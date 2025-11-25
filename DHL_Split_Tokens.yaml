@@ -113,7 +113,7 @@ agent:
         traces:
           exporters: [otlphttp/metrics]
         logs:
-          exporters: [splunk_hec/logs]
+          exporters: [splunk_hec/logs, otlphttp/entities]
 
     receivers:
       kubeletstats:
