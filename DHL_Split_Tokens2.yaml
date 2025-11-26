@@ -66,9 +66,15 @@ agent:
       file_storage:
         directory: /checkpoint/
         create_directory: true
+      headers_setter:
+        headers:
+          - action: upsert
+            key: X-SF-TOKEN
+            from_context: X-SF-TOKEN
+            default_value: djrozJD_OOKX6RVm9cFz2w
     
     service:
-      extensions: [pprof, zpages, health_check, file_storage]
+      extensions: [pprof, zpages, health_check, file_storage, headers_setter]
       pipelines:
         metrics:
           exporters: [signalfx]
