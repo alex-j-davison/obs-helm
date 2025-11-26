@@ -1,0 +1,124 @@
+agent:
+  
+  discovery:
+    enabled: true
+  
+  config:
+
+    exporters:
+      
+      # 19.11. (Alex D) - O11y endpoint defined
+      otlphttp:
+        # The target URL to send trace data to. By default it's set to ``https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp``.
+        traces_endpoint: "https://ingest.us1.signalfx.com/v2/trace/otlp"
+        # The target URL to send metrics data to. By default it's set to 
+        metrics_endpoint: "https://ingest.us1.signalfx.com/v2/datapoint/otlp"
+        # Set of HTTP headers added to every request.
+        headers:
+          # X-SF-Token is the authentication token provided by Splunk Observability Cloud.
+          "X-SF-Token": "djrozJD_OOKX6RVm9cFz2w"
+        auth:
+          authenticator: headers_setter
+        timeout: 10s
+        read_buffer_size: 123
+        write_buffer_size: 345
+        sending_queue:
+          enabled: true
+          num_consumers: 2
+          queue_size: 10
+        retry_on_failure:
+          enabled: true
+          initial_interval: 10s
+          randomization_factor: 0.7
+          multiplier: 1.3
+          max_interval: 60s
+          max_elapsed_time: 10m
+        compression: gzip
+
+      signalfx:
+        access_token: djrozJD_OOKX6RVm9cFz2w
+        realm: us1
+
+      # 19.11. (Alex D) - 
+      splunk_hec/logs:
+        # Splunk HTTP Event Collector token.
+        token: 407c0dc9-8883-4c87-9e4b-69e7d5b0e399
+        # URL to a Splunk instance to send data to.
+        endpoint: "https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event"
+        # Whether to deactivate gzip compression over HTTP. Defaults to false.
+        disable_compression: false
+        # HTTP timeout when sending data. Defaults to 10s.
+        timeout: 10s
+        # Whether to skip checking the certificate of the HEC endpoint when sending data over HTTPS. Defaults to false.
+        tls:
+          insecure_skip_verify: true
+
+    processors:
+      batch:
+
+    extensions:
+      pprof:
+        endpoint: :1888
+      zpages:
+        endpoint: :55679
+        expvar:
+          enabled: true
+      file_storage:
+        directory: /checkpoint/
+        create_directory: true
+      headers_setter:
+        headers:
+          - action: upsert
+            key: X-SF-TOKEN
+            from_context: X-SF-TOKEN
+            default_value: "${SPLUNK_ACCESS_TOKEN}"
+    
+    service:
+      telemetry:
+        logs:
+          level: debug
+
+      extensions: [pprof, zpages, file_storage, headers_setter]
+      pipelines:
+        metrics:
+          exporters: [signalfx]
+        traces:
+          exporters: [otlphttp]
+        logs:
+          exporters: [splunk_hec/logs]
+
+    receivers:
+      kubeletstats:
+        auth_type: serviceAccount
+        insecure_skip_verify: true
+
+logsCollection:
+  containers:
+    # Enable the logs from the collector/agent to be collected at the container level.
+    excludeAgentLogs: true
+
+#This will need changing per cluster name
+clusterName: ajd-dhl-test
+#This will need changing per cluster type
+environment: ajd-test
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+
+splunkObservability:
+  accessToken: PF4RYA5HhQRH95PQbaCeEA
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+  
+splunkPlatform:
+  endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+  token: 6b73c679-8fcf-4bb8-939b-7456b7ccaca2
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true
