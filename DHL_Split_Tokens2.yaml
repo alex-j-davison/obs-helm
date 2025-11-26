@@ -76,6 +76,10 @@ agent:
             default_value: "${SPLUNK_ACCESS_TOKEN}"
     
     service:
+      telemetry:
+        logs:
+          level: debug
+
       extensions: [pprof, zpages, health_check, file_storage, headers_setter]
       pipelines:
         metrics:
@@ -89,6 +93,11 @@ agent:
       kubeletstats:
         auth_type: serviceAccount
         insecure_skip_verify: true
+
+logsCollection:
+  containers:
+    # Enable the logs from the collector/agent to be collected at the container level.
+    excludeAgentLogs: true
 
 #This will need changing per cluster name
 clusterName: ajd-dhl-test
