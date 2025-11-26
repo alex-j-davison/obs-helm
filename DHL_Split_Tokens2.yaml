@@ -58,7 +58,13 @@ agent:
 
     extensions:
       health_check:
-        endpoint: 0.0.0.0:25252
+        health_check/1:
+        endpoint: 0.0.0.0:13133
+        path: "/health/status"
+        check_collector_pipeline:
+          enabled: true
+          interval: "5m"
+          exporter_failure_threshold: 5
       pprof:
         endpoint: :1888
       zpages:
