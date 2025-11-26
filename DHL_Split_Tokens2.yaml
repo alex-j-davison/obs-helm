@@ -58,7 +58,7 @@ agent:
 
     extensions:
       health_check:
-        endpoint: 0.0.0.0:13133
+        endpoint: 0.0.0.0:25252
       pprof:
         endpoint: :1888
       zpages:
