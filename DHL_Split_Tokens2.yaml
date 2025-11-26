@@ -57,14 +57,6 @@ agent:
       batch:
 
     extensions:
-      health_check:
-      health_check/1:
-        endpoint: 0.0.0.0:13133
-        path: "/health/status"
-        check_collector_pipeline:
-          enabled: true
-          interval: "5m"
-          exporter_failure_threshold: 5
       pprof:
         endpoint: :1888
       zpages:
@@ -86,7 +78,7 @@ agent:
         logs:
           level: debug
 
-      extensions: [pprof, zpages, health_check, file_storage, headers_setter]
+      extensions: [pprof, zpages, file_storage, headers_setter]
       pipelines:
         metrics:
           exporters: [signalfx]
