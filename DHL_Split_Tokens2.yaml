@@ -66,15 +66,9 @@ agent:
       file_storage:
         directory: /checkpoint/
         create_directory: true
-      headers_setter:
-        headers:
-          - action: upsert
-            key: X-SF-TOKEN
-            from_context: X-SF-TOKEN
-            default_value: "${SPLUNK_ACCESS_TOKEN}"
     
     service:
-      extensions: [pprof, zpages, health_check, file_storage, headers_setter]
+      extensions: [pprof, zpages, health_check, file_storage]
       pipelines:
         metrics:
           exporters: [signalfx]
