@@ -1,0 +1,31 @@
+agent:
+  discovery:
+    enabled: true
+  config:
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
+clusterName: ajdnewcluster
+environment: ajdnewcluster
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+  
+splunkObservability:
+  accessToken: UkWiTCjeB_S0whQbIzNh2g
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+splunkPlatform:
+  endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+  token: a319f672-1b42-4201-a443-54b35ae6f1d8
+  index: "ajdmainevents"
+  metricsIndex: "ajdmaintmetircs"
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true
