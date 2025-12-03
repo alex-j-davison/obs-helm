@@ -1,8 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
 metadata: 
   annotations:
     apptracestoken: djrozJD_OOKX6RVm9cFz2w
     appmetictoken: AGpvWQzwm5thxhU4jaCjfA
-    applogindex: a319f672-1b42-4201-a443-54b35ae6f1d8
+    applogindex: ajdlogsapp
   name: nginx-deployment
 spec:
   selector:

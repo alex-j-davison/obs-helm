@@ -16,7 +16,7 @@ agent:
           log_statements:
             - context: log
               statements: 
-                - set(resource.attributes["com.splunk.index"],"ajd_pod_logs") where attributes["log.iostream"] == "stderr" 
+                - set(resource.attributes["com.splunk.index"],"ajdlogs") where attributes["log.iostream"] == "stderr" 
 
       k8sattributes/traces:
         extract:
