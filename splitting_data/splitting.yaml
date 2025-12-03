@@ -1,0 +1,113 @@
+agent:  
+  discovery:
+    enabled: true
+  config:
+
+    processors:
+
+      transform/setmetrictoken:
+        error_mode: ignore
+        metric_statements:
+          - context: metric
+            statements:
+              -set(resource.attributes["com.splunk.signalfx.access_token"],"c34stMg25wOl4XEgQZSURw") where metric.name == "k8s.*"
+      transform/setindex:
+          error_mode: ignore
+          log_statements:
+            - context: log
+              statements: 
+                - set(resource.attributes["com.splunk.index"],"ajd_pod_logs") where attributes["log.iostream"] == "stderr" 
+
+      k8sattributes/traces:
+        extract:
+          annotations:
+            - from: namespace
+              key: apptracestoken
+              tag_name: com.splunk.signalfx.access_token
+      k8sattributes/metrics:
+        extract:
+          annotations:
+            - from: namespace
+              key: appmetictoken
+              tag_name: com.splunk.signalfx.access_token
+      k8sattributes/index:
+        extract:
+          annotations:
+            - from: namespace
+              key: applogindex
+              tag_name: com.splunk.index
+    
+    exporters:
+      otlphttp:
+        traces_endpoint: https://ingest.us1.signalfx.com/v2/trace/otlp
+        headers:
+          X-SF-Token: 
+        timeout: 10s
+        read_buffer_size: 123
+        write_buffer_size: 345
+        sending_queue:
+          enabled: true
+          num_consumers: 2
+          queue_size: 10
+        retry_on_failure:
+          enabled: true
+          initial_interval: 10s
+          randomization_factor: 0.7
+          multiplier: 1.3
+          max_interval: 60s
+          max_elapsed_time: 10m
+        compression: gzip
+      splunk_hec:
+        # Static token
+        token: "407c0dc9-8883-4c87-9e4b-69e7d5b0e399"
+        endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
+        disable_compression: false
+        timeout: 10s
+        tls:
+          insecure_skip_verify: true
+    
+    service:
+      pipelines:
+        metrics:
+          processors:
+          - transform/setmetrictoken
+          - k8sattributes/traces 
+          exporters: [otlphttp]
+        traces:
+          processors:
+          - k8sattributes/metrics 
+          exporters: [otlphttp]
+        logs:
+          processors:
+          - transform/setindex
+          - k8sattributes/logs
+          exporters: [splunk_hec]
+
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
+
+clusterName: ajd-splitting-test
+environment: test
+gateway:
+  enabled: false
+operator:
+  enabled: true
+operatorcrds:
+  install: true
+
+# Not required
+splunkObservability:
+  accessToken: ""
+  profilingEnabled: true
+  realm: us1
+  metricsEnabled: true
+  tracesEnabled: true
+  
+splunkPlatform:
+  endpoint: 
+  token: ""
+  metricsEnabled: false
+  tracesEnabled: false
+  logsEnabled: true
+  insecureSkipVerify: true

@@ -1,0 +1,21 @@
+metadata: 
+  annotations:
+    apptracestoken: djrozJD_OOKX6RVm9cFz2w
+    appmetictoken: AGpvWQzwm5thxhU4jaCjfA
+    applogindex: a319f672-1b42-4201-a443-54b35ae6f1d8
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
