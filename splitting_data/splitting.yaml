@@ -98,7 +98,7 @@ operatorcrds:
 
 # Not required
 splunkObservability:
-  accessToken: ""
+  accessToken: "Lsht0aLv-DdtcODHBJT8yA"
   profilingEnabled: true
   realm: us1
   metricsEnabled: true
