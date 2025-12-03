@@ -10,7 +10,7 @@ agent:
         metric_statements:
           - context: metric
             statements:
-              -set(resource.attributes["com.splunk.signalfx.access_token"],"c34stMg25wOl4XEgQZSURw") where metric.name == "k8s.*"
+              - set(resource.attributes["com.splunk.signalfx.access_token"],"c34stMg25wOl4XEgQZSURw") where metric.name == "k8s.*"
       transform/setindex:
           error_mode: ignore
           log_statements:
@@ -80,7 +80,7 @@ agent:
         logs:
           processors:
           - transform/setindex
-          - k8sattributes/logs
+          - k8sattributes/index
           exporters: [splunk_hec]
 
     receivers:
@@ -105,7 +105,7 @@ splunkObservability:
   tracesEnabled: true
   
 splunkPlatform:
-  endpoint: 
+  endpoint: "https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event"
   token: "407c0dc9-8883-4c87-9e4b-69e7d5b0e399"
   metricsEnabled: false
   tracesEnabled: false
