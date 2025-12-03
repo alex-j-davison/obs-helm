@@ -106,7 +106,7 @@ splunkObservability:
   
 splunkPlatform:
   endpoint: 
-  token: ""
+  token: "407c0dc9-8883-4c87-9e4b-69e7d5b0e399"
   metricsEnabled: false
   tracesEnabled: false
   logsEnabled: true
