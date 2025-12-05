@@ -15,16 +15,16 @@ operatorcrds:
   install: true
   
 splunkObservability:
-  accessToken: UkWiTCjeB_S0whQbIzNh2g
+  accessToken: Lsht0aLv-DdtcODHBJT8yA
   profilingEnabled: true
   realm: us1
   metricsEnabled: true
   tracesEnabled: true
 splunkPlatform:
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
-  token: a319f672-1b42-4201-a443-54b35ae6f1d8
-  index: "ajdmainevents"
-  metricsIndex: "ajdmaintmetircs"
+  token: eb50e37c-6b14-44fc-8b44-52d9ca47d85a
+  index: ""
+  metricsIndex: ""
   metricsEnabled: false
   tracesEnabled: false
   logsEnabled: true
