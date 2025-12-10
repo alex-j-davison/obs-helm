@@ -28,3 +28,5 @@ splunkPlatform:
   tracesEnabled: false
   logsEnabled: true
   insecureSkipVerify: true
+autodetect:
+  prometheus: true
