@@ -23,8 +23,6 @@ splunkObservability:
 splunkPlatform:
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
   token: eb50e37c-6b14-44fc-8b44-52d9ca47d85a
-  index: ""
-  metricsIndex: ""
   metricsEnabled: false
   tracesEnabled: false
   logsEnabled: true
