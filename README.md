@@ -67,10 +67,9 @@ Steps:-
 
 **_Note:-_** To stop the script, <code>Ctrl+C</code>
 
-
 ## Change log
 
 ### Version 2.0.0
 - Update README
 ### Version 1.0.0
-- Initial creation.
+- Initial creation
