@@ -26,7 +26,7 @@ if [ $# -eq 0 ]
         echo ""
         echo "Step 1/2: Setting past time"
         pasttime=`ls -ltr | grep "${file}.yaml"`
-        echo "Step 2/2: Setting kubectl namespace"
+        echo "Step 2/2: Setting kubectl namespace to default"
         kubectl config set-context --current --namespace=default
         echo ""
         
