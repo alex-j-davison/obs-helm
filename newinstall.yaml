@@ -5,8 +5,10 @@ agent:
     receivers:
       kubeletstats:
         insecure_skip_verify: true
+        
 clusterName: ajdnewcluster
 environment: ajdnewcluster
+
 gateway:
   enabled: false
 operator:
@@ -20,6 +22,7 @@ splunkObservability:
   realm: us1
   metricsEnabled: true
   tracesEnabled: true
+
 splunkPlatform:
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
   token: eb50e37c-6b14-44fc-8b44-52d9ca47d85a
