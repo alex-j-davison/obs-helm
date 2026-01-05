@@ -49,7 +49,7 @@ Steps:-
 
 1. Clone repo
 
-<code>git clone https://github.com/alex-j-davison/obs-helm.git </code>
+<code>git clone https://github.com/alex-j-davison/obs-helm.git</code>
 
 **_Note:-_** This is initialisation steps of the process, the shell script loops and updates itself
 
