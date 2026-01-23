@@ -81,7 +81,6 @@ splunkObservability:
   realm: us1
   metricsEnabled: true
   tracesEnabled: true
-  logsEnabled: false
 
 splunkPlatform:
   endpoint: https://http-inputs.splunkods.splunkcloud.com:443/services/collector/event
