@@ -14,18 +14,21 @@
 clusterName: ajdSMEObsCluster
 environment: ajdSMEObsClusterEnv
 
+###################################
+## Gateway and Operator settings ##
+###################################
+
 gateway:
   enabled: false
 operator:
   enabled: true
 operatorcrds:
   install: true
-  
 
-
-autodetect:
- prometheus: true
-
+#################################  
+## Agent configuration section ##
+#################################
+ 
 agent:
   enabled: true
   discovery:
@@ -36,25 +39,25 @@ agent:
 ## Receivers configuration ##
 #############################
 
-receivers:
-  kubeletstats:
-    insecure_skip_verify: true
-  prometheus/customport:
-    port: 9091
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
+      prometheus/customport:
+        port: 9091
 
 
 #############################
 ## Processors configuration ##
 #############################
 
-processors:
-  clusterReceiver:
-    enabled: true
-  logsCollection:
-    containers:
-      enabled: true
-  featureGates:
-    useLightPrometheusReceiver: true
+    processors:
+      clusterReceiver:
+        enabled: true
+      logsCollection:
+        containers:
+          enabled: true
+      featureGates:
+        useLightPrometheusReceiver: true
 
 ############################
 ## Pipeline configuration ##
@@ -89,3 +92,6 @@ splunkPlatform:
   tracesEnabled: false
   logsEnabled: true
   insecureSkipVerify: true
+
+autodetect:
+ prometheus: true
