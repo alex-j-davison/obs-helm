@@ -61,11 +61,11 @@ agent:
 ############################
 ## Pipeline configuration ##
 ############################
-    service:
-      pipelines:
-        metrics/newprometheus:
-          receivers:
-          - kubeletstats
+##    service:
+##      pipelines:
+##        metrics/newprometheus:
+##          receivers:
+##          - kubeletstats
 ##        - otlp
 ##        - signalx
 ##        - prometheus/customport
