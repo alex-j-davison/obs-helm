@@ -63,12 +63,12 @@ agent:
 ## Pipeline configuration ##
 ############################
 
-    pipeline:
-      metrics:
-        metrics/newprometheus:
-          receivers:
-          - otlp
-          - signalx
+##    pipeline:
+##     metrics:
+##        metrics/newprometheus:
+##          receivers:
+##          - otlp
+ ##         - signalx
 ##          - prometheus/customport
 
 #####################################################
