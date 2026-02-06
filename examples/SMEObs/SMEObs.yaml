@@ -51,8 +51,8 @@ agent:
 #############################
 
     processors:
-      clusterReceiver:
-        enabled: true
+##       clusterReceiver:
+##         enabled: true
       logsCollection:
         containers:
           enabled: true
