@@ -20,27 +20,27 @@ environment: ajdSMEObsClusterEnv
 
 gateway:
   enabled: false
-operator:
-  enabled: true
-operatorcrds:
-  install: true
+# operator:
+#   enabled: false
+# operatorcrds:
+#   install: false
 
 #################################  
 ## Agent configuration section ##
 #################################
  
 agent:
-  discovery:
-    enabled: true
+  # discovery:
+  #   enabled: true
   config:
 
 #############################
 ## Receivers configuration ##
 #############################
 
-    receivers:
-      kubeletstats:
-        insecure_skip_verify: true
+    # receivers:
+      # kubeletstats:
+      #   insecure_skip_verify: true
 ##      prometheus/customport:
 ##        port: 9091
 
