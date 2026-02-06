@@ -68,13 +68,14 @@ agent:
 
 ##        metrics/newprometheus:
 ##          receivers:
-##        - prometheus/customport
+##            - signalx
+##            - prometheus/customport
 
     service:
       pipelines:
         metrics:
           processors: [memory_limiter]
-          receivers: [kubeletstats, otlp, signalx]
+          receivers: [kubeletstats, otlp]
         logs:
           processors: [memory_limiter]
         traces:
