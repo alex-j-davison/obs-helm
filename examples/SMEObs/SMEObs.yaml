@@ -38,9 +38,9 @@ agent:
 ## Receivers configuration ##
 #############################
 
-    # receivers:
-      # kubeletstats:
-      #   insecure_skip_verify: true
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
 ##      prometheus/customport:
 ##        port: 9091
 
