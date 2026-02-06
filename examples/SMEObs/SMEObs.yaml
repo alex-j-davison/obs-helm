@@ -29,10 +29,10 @@ gateway:
 ## Agent configuration section ##
 #################################
  
-agent:
-  # discovery:
-  #   enabled: true
-  config:
+# agent:
+#   # discovery:
+#   #   enabled: true
+#   config:
 
 #############################
 ## Receivers configuration ##
