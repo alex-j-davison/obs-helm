@@ -65,19 +65,16 @@ agent:
 ############################
 ## Pipeline configuration ##
 ############################
-##    service:
-##      pipelines:
+
 ##        metrics/newprometheus:
 ##          receivers:
-##          - kubeletstats
-##        - otlp
-##        - signalx
 ##        - prometheus/customport
 
     service:
       pipelines:
         metrics:
-          processors: [memory_limiter, kubeletstats, otlp, signalx]
+          processors: [memory_limiter]
+          receivers: [kubeletstats, otlp, signalx]
         logs:
           processors: [memory_limiter]
         traces:
