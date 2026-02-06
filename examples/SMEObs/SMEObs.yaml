@@ -42,8 +42,8 @@ agent:
     receivers:
       kubeletstats:
         insecure_skip_verify: true
-      prometheus/customport:
-        port: 9091
+##      prometheus/customport:
+##        port: 9091
 
 
 #############################
@@ -93,4 +93,4 @@ splunkPlatform:
   insecureSkipVerify: true
 
 autodetect:
- prometheus: true
+  prometheus: true
