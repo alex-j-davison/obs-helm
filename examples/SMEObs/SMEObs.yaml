@@ -54,12 +54,11 @@ agent:
         check_interval: 1s
         limit_mib: 4000
         spike_limit_mib: 800
-
+      logsCollection:
+        containers:
+          enabled: true
 ##       clusterReceiver:
 ##         enabled: true
-##      logsCollection:
-##        containers:
-##          enabled: true
 ##       featureGates:
 ##         useLightPrometheusReceiver: true
 
@@ -78,7 +77,7 @@ agent:
     service:
       pipelines:
         metrics:
-          processors: [memory_limiter]
+          processors: [memory_limiter, kubeletstats, otlp, signalx]
         logs:
           processors: [memory_limiter]
         traces:
