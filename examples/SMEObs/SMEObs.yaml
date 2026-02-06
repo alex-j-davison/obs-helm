@@ -30,7 +30,6 @@ operatorcrds:
 #################################
  
 agent:
-  enabled: true
   discovery:
     enabled: true
   config:
