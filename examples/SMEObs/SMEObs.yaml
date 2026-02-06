@@ -50,6 +50,11 @@ agent:
 #############################
 
     processors:
+      memory_limiter:
+        check_interval: 1s
+        limit_mib: 4000
+        spike_limit_mib: 800
+
 ##       clusterReceiver:
 ##         enabled: true
 ##      logsCollection:
@@ -69,6 +74,15 @@ agent:
 ##        - otlp
 ##        - signalx
 ##        - prometheus/customport
+
+    service:
+      pipelines:
+        metrics:
+          processors: [memory_limiter]
+        logs:
+          processors: [memory_limiter]
+        traces:
+          processors: [memory_limiter]
 
 #####################################################
 ## Splunk Observability and Platform configuration ##
