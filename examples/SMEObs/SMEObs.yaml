@@ -61,14 +61,14 @@ agent:
 ############################
 ## Pipeline configuration ##
 ############################
-
-##    pipeline:
-##     metrics:
-##        metrics/newprometheus:
-##          receivers:
-##          - otlp
- ##         - signalx
-##          - prometheus/customport
+    service:
+      pipelines:
+        metrics/newprometheus:
+          receivers:
+          - kubeletstats
+##        - otlp
+##        - signalx
+##        - prometheus/customport
 
 #####################################################
 ## Splunk Observability and Platform configuration ##
