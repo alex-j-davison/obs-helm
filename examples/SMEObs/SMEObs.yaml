@@ -49,11 +49,11 @@ agent:
 ## Processors configuration ##
 #############################
 
-    processors:
-      memory_limiter:
-        check_interval: 1s
-        limit_mib: 4000
-        spike_limit_mib: 800
+    # processors:
+    #   memory_limiter:
+    #     check_interval: 1s
+    #     limit_mib: 4000
+    #     spike_limit_mib: 800
 ##       logsCollection:
 ##         containers:
 ##           enabled: true
@@ -71,15 +71,15 @@ agent:
 ##            - signalx
 ##            - prometheus/customport
 
-    service:
-      pipelines:
-        metrics:
-          processors: [memory_limiter]
-          receivers: [kubeletstats, otlp]
-        logs:
-          processors: [memory_limiter]
-        traces:
-          processors: [memory_limiter]
+##     service:
+##       pipelines:
+##         metrics:
+##           processors: [memory_limiter]
+##           receivers: [kubeletstats, otlp]
+##         logs:
+##           processors: [memory_limiter]
+##        traces:
+##           processors: [memory_limiter]
 
 #####################################################
 ## Splunk Observability and Platform configuration ##
