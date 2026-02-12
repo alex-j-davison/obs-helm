@@ -20,10 +20,6 @@ environment: ajdSMEObsClusterEnv
 
 gateway:
   enabled: false
-# operator:
-#   enabled: false
-# operatorcrds:
-#   install: false
 
 #################################  
 ## Agent configuration section ##
@@ -39,47 +35,9 @@ agent:
 #############################
 
     receivers:
+      # Need due to a certification issue with CCM instances. 
       kubeletstats:
         insecure_skip_verify: true
-##      prometheus/customport:
-##        port: 9091
-
-
-#############################
-## Processors configuration ##
-#############################
-
-    # processors:
-    #   memory_limiter:
-    #     check_interval: 1s
-    #     limit_mib: 4000
-    #     spike_limit_mib: 800
-##       logsCollection:
-##         containers:
-##           enabled: true
-##       clusterReceiver:
-##         enabled: true
-##       featureGates:
-##         useLightPrometheusReceiver: true
-
-############################
-## Pipeline configuration ##
-############################
-
-##        metrics/newprometheus:
-##          receivers:
-##            - signalx
-##            - prometheus/customport
-
-##     service:
-##       pipelines:
-##         metrics:
-##           processors: [memory_limiter]
-##           receivers: [kubeletstats, otlp]
-##         logs:
-##           processors: [memory_limiter]
-##        traces:
-##           processors: [memory_limiter]
 
 #####################################################
 ## Splunk Observability and Platform configuration ##
