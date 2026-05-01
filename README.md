@@ -63,7 +63,7 @@ Steps:-
 
 **_Example below:-_**
 
-<code>./obs-helm/installhelm.sh SMEObs1</code>
+<code>./obs-helm/installhelm.sh ./obs-helm/examples/SMEObs/SMEObs</code>
 
 **_Note:-_** To stop the script, <code>Ctrl+C</code>
 
