@@ -73,7 +73,7 @@ if [ $# -eq 0 ]
                     echo "Step 4/4: Upgrade not possible, no change"
                 else
                     echo "Step 4/4: Upgrade helm"
-                    sudo microk8s helm upgrade splunk-otel-collector --values ${file}.yaml splunk-otel-collector-chart/splunk-otel-collector
+                    sudo microk8s helm  -n otel upgrade splunk-otel-collector --values ${file}.yaml splunk-otel-collector-chart/splunk-otel-collector
                     pasttime=$currenttime
                     
                 fi
